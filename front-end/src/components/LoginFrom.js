@@ -2,9 +2,10 @@ import React from "react";
 import { useState } from "react";
 import axios from 'axios'
 import Toast from './Toast.js'
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
-
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -46,6 +47,7 @@ function LoginForm() {
 
       if (response.status === 200) {
         await showToast("Admin Logged in Successfully!")
+        navigate('/')
         
       } else {
         await showToast("something is not right")
