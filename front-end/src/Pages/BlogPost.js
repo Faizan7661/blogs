@@ -11,6 +11,7 @@ function BlogPost() {
   const [links, setLinks] = useState([]);
 
   const uploadFile = async (type, data) => {
+    
     try {
       let cloudName = 'drgqcwxq6';
       let resourceType = type === 'image' ? 'image' : 'video';
@@ -26,7 +27,7 @@ function BlogPost() {
       return secure_url;
     } catch (error) {
       console.error(error);
-      throw error; // Rethrow the error for better handling in the component
+      throw error;
     }
   };
 
@@ -47,7 +48,6 @@ function BlogPost() {
       reader.readAsDataURL(e.target.files[0]);
     } catch (error) {
       console.error(error);
-      // Handle the error (show message, etc.)
     }
   };
 
@@ -66,7 +66,7 @@ function BlogPost() {
         title,
         content,
         image: imageUrl,
-        links: links.map(link => link.trim()), // Trim spaces from links
+        links: links.map(link => link.trim()), 
       };
 
       await axios.post("/api/blog/create-blog", formData);
